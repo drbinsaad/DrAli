@@ -11,7 +11,7 @@
 <body>
     <nav id="navbar">
         <div class="container">
-            <a href="index.html" class="logo">Dr Ali alshahrani</a>
+            <a href="index.html" class="logo">Dr Ali Alshahrani</a>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -19,10 +19,10 @@
             </div>
             <ul class="nav-links">
                 <li><a href="index.html#research">Research</a></li>
-                <li><a href="curriculum_vitae.html">Brief CV</a></li>
+                <li><a href="curriculum_vitae.html">Brief</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
                 <li>
-                    <a href="index.html#ent">ENT</a>
+                    <a href="index.html">ENT</a>
                     <ul class="dropdown">
                         <li><a href="ent1.html">ENT Focus 1</a></li>
                         <li><a href="ent2.html">ENT Focus 2</a></li>
@@ -43,12 +43,38 @@
         </div>
     </header>
 
-    <section id="ent1-details">
+    <section id="ent-details">
+        <h2 class="section-title" data-aos="fade-up">ENT Focus 1 Details</h2>
+        <p>More information about ENT Focus 1...</p>
+    </section>
+
+    <section id="lidocaine-calculator">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">ENT Focus 1 Details</h2>
-            <p>More information about ENT Focus 1...</p>
+            <h2>Lidocaine Dose Calculator</h2>
+            <label for="weight">Patient's Weight (kg):</label>
+            <input type="number" id="weight" placeholder="Enter weight in kg">
+            <button onclick="calculateDose()">Calculate</button>
+            <h3>Results:</h3>
+            <p id="lidocaineDose">Lidocaine (without epinephrine): -</p>
+            <p id="lidocaineEpiDose">Lidocaine (with epinephrine): -</p>
         </div>
     </section>
+
+    <script>
+        function calculateDose() {
+            let weight = parseFloat(document.getElementById('weight').value);
+            if (isNaN(weight) || weight <= 0) {
+                alert("Please enter a valid weight.");
+                return;
+            }
+            
+            let maxLidocaine = Math.min(weight * 3, 200); // Lidocaine alone
+            let maxLidocaineEpi = Math.min(weight * 7, 500); // Lidocaine + Epinephrine
+            
+            document.getElementById('lidocaineDose').innerText = `Lidocaine (without epinephrine): ${maxLidocaine.toFixed(2)} mg`;
+            document.getElementById('lidocaineEpiDose').innerText = `Lidocaine (with epinephrine): ${maxLidocaineEpi.toFixed(2)} mg`;
+        }
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="js/main.js"></script>
